@@ -134,3 +134,25 @@ print(sommeCm(12,0))
 
 
 
+###Exercice 3
+
+#1
+def sommeT(l,n):
+    somme=0
+    for i in range(0,n-1):
+        somme+=l[i]
+    return somme
+
+#2
+somme=0
+def sommeTrecu(l,n):
+    global somme
+    if n==0:
+        return 0
+    else:
+        return somme+l[n-1]+sommeTrecu(l,n-1)
+l=[1,3,4,6]
+
+
+
+
