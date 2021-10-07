@@ -155,7 +155,7 @@ def sommeTrecu(l,n):
 l=[1,3,4,6]
 
 
-#Grosse moula 
+
 
 
 
