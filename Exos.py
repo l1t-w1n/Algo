@@ -1,23 +1,21 @@
-def recherche(l,x):
-	for i in l:
-		if i ==x:
-			return True
-		else:
-			return False
-			
-def rechdic(l, x):
-		mid=int(len(l)/2)
-		if x==l[mid]:
-			return True
-		elif len(l)==1 and l[0]==x:
-			return True
-		elif len(l)==1 and l[0]!=x:
-			return False
-		elif x>l[mid]:
-			return rechdic(l[mid:],x)
-		else:
-			return rechdic(l[:mid],x)
-			
+c=0
+def syracuse(n):
+	global c
+	c+=1
+	if n==1:
+		return 
+	elif n%2==0:
+		n=n/2
+		print(n)
+		return syracuse(n)
+	else:
+		n=3*n+1
+		print(n)
+		return syracuse(n)
+while True:
+	n=int(input("eneter n "))
+	syracuse(n)
+	print(c)
+	c=0
 
-print(rechdic([2,5,6,7], 9))
 	
