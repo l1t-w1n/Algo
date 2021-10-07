@@ -1,4 +1,5 @@
-# Exo 1
+###Exercice 1
+
 from math import sqrt
 #1
 
@@ -81,7 +82,7 @@ def estPremier(n):
         return False
 print(estPremier(11))
 
-# EXO 2
+###Exercice 2
 
 #1
 def somme5(n):
