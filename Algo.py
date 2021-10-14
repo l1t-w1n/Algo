@@ -90,7 +90,7 @@ def naif(t):
 
 def naif2(t):
 	max=t[0]
-    iter=0
+	d, f, iter=0,0,0
 	for i in range(len(t)):
 		s=0
 		for n in range(i, len(t)):
@@ -98,4 +98,6 @@ def naif2(t):
 			iter+=1
 			if s>max:
 				max=s
+				d=i
+				f=n
 	return max, iter
