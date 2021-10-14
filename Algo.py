@@ -87,3 +87,15 @@ def naif(t):
     	if s1>som:
     		som=s1
     return som
+
+def naif2(t):
+	max=t[0]
+    iter=0
+	for i in range(len(t)):
+		s=0
+		for n in range(i, len(t)):
+			s+=t[n]
+			iter+=1
+			if s>max:
+				max=s
+	return max, iter
