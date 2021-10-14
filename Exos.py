@@ -13,9 +13,18 @@ def naif2(t):
 				f=n
 	return max, iter
 		
+def kadane(t):
+	best_sum = 0
+	current_sum = 0
+	iter=0
+	for x in t:
+		iter+=1
+		current_sum = max(0, current_sum + x)
+		best_sum = max(best_sum, current_sum)
+	return best_sum, iter
 			
 
-print(naif2([1,-1,5]))
+print(kadane([1,-1,5]))
 
 
 	

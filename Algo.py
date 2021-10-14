@@ -87,7 +87,6 @@ def naif(t):
     	if s1>som:
     		som=s1
     return som
-
 def naif2(t):
 	max=t[0]
 	d, f, iter=0,0,0
@@ -101,3 +100,12 @@ def naif2(t):
 				d=i
 				f=n
 	return max, iter
+def kadane(t):
+    best_sum = 0
+    current_sum = 0
+    iter=0
+    for x in t:
+    	iter+=1
+    	current_sum = max(0, current_sum + x)
+    	best_sum = max(best_sum, current_sum)
+    return best_sum, iter
