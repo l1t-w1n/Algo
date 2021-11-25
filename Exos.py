@@ -60,17 +60,6 @@ def afficherCourbe(maListeDeValeurs):
   plot(array(range(len(maListeDeValeurs))),array(maListeDeValeurs))
   show()
 
-def bancEssai():
-	global c
-	data=[]
-	for i in range(10):
-		c=0
-		a=[0]*i
-		for f in range(2**i):
-			incrnombin(a)
-		data.append(c/2**i)
-	afficherCourbe(data)
-
 def pileVide():
 	return []
 def estVide(P):
@@ -189,6 +178,26 @@ def tribulle(l):
                 l[j+1],l[j]=l[j],l[j+1]
 
 k=[1,2,3,5,1,2,8,53,84,12,35,8,7]
-tribulle(k)
-print(k)
+def tempsMoyen(fonction,liste,nbRepetitions=50):
+  start=time.time()
+  for k in range(nbRepetitions):
+    fonction(liste)
+  end=time.time()
+  return (end-start)/nbRepetitions
+
+def bancEssai():
+  n=1000
+  data1,data2=[],[]
+  for i in range(2,n+1):
+    liste=[randint(1,n) for _ in range(i)]
+    data1.append(tempsMoyen(secondMaximumV1,liste))
+    data2.append(tempsMoyen(secondMaximumV2,liste))
+  afficherCourbe(data1,"V1")
+  afficherCourbe(data2,"V2")
+  legend(loc='upper right')
+  show()
+
+bancEssai()
+'''tribulle(k)
+print(k)'''
 
