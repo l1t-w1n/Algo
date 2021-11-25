@@ -186,9 +186,7 @@ def tribulle(l):
     for i in range(len(l),0,-1):
         for j in range(i-1):
             if l[j+1]<l[j]:
-                a=l[j+1]
-                l[j+1]=l[j]
-                l[j]=a
+                l[j+1],l[j]=l[j],l[j+1]
     return l
 k=[1,2,3,5,1,2,8,53,84,12,35,8,7]
 #tridich(k,len(k))
