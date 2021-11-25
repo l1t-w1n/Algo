@@ -158,5 +158,16 @@ def double(p):
 			empiler(res,e*2)
 			empiler(p,e)	
 		return res
-k=[1,2,3]
-print(double(k))
+
+def triseq(l,n):
+	if n>1:
+		triseq(l,n-1)
+		k=n-1
+		while k>0 and l[k-1]>l[k]:
+			l[k-1],l[k]=l[k],l[k-1]
+			k-=1
+
+k=[1,2,3,5,1,2,8,53,84,12,35,8,7]
+triseq(k,len(k))
+print(k)
+
