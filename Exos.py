@@ -166,8 +166,23 @@ def triseq(l,n):
 		while k>0 and l[k-1]>l[k]:
 			l[k-1],l[k]=l[k],l[k-1]
 			k-=1
+def tridich(l,n):
+	if n>1:
+		tridich(l,n-1)
+		d=0
+		f=n-1
+		while d<f:
+			m=(d+f)//2
+			if l[m]<l[n-1]:
+				d=m+1
+			else:
+				f=m
+		s=l[n-1]
+		for i in range(n-1,d,-1):
+			l[i],l[i-1]=l[i-1],l[i]
+		l[d]=s
 
 k=[1,2,3,5,1,2,8,53,84,12,35,8,7]
-triseq(k,len(k))
+tridich(k,len(k))
 print(k)
 
