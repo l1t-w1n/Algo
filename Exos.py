@@ -182,7 +182,15 @@ def tridich(l,n):
 			l[i],l[i-1]=l[i-1],l[i]
 		l[d]=s
 
+def tribulle(l):
+    for i in range(len(l),0,-1):
+        for j in range(i-1):
+            if l[j+1]<l[j]:
+                a=l[j+1]
+                l[j+1]=l[j]
+                l[j]=a
+    return l
 k=[1,2,3,5,1,2,8,53,84,12,35,8,7]
-tridich(k,len(k))
-print(k)
+#tridich(k,len(k))
+print(tribulle(k))
 
