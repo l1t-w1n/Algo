@@ -56,9 +56,8 @@ def nbinvmoy(n):
 
 
 
-def afficherCourbe(maListeDeValeurs):
-  plot(array(range(len(maListeDeValeurs))),array(maListeDeValeurs))
-  show()
+def afficherCourbe(maListeDeValeurs,name):
+  plot(array(range(len(maListeDeValeurs))),array(maListeDeValeurs),label=name)
 
 def pileVide():
 	return []
@@ -177,27 +176,62 @@ def tribulle(l):
             if l[j+1]<l[j]:
                 l[j+1],l[j]=l[j],l[j+1]
 
+def tri_selection(tab):
+   for i in range(len(tab)):
+       min = i
+       for j in range(i+1, len(tab)):
+           if tab[min] > tab[j]:
+               min = j                
+       tab[i],tab[min]=tab[min],tab[i]
+   return tab
+
+
+def fusion(left,right):
+	res = []
+	index_left, index_right = 0, 0
+	while index_left < len(left) and index_right < len(right):        
+		if left[index_left] <= right[index_right]:
+			res.append(left[index_left])
+			index_left += 1
+		else:
+			res.append(right[index_right])
+			index_right += 1
+	if left:
+		res.extend(left[index_left:])
+	if right:
+		res.extend(right[index_right:])
+	return res
+     
+def tri_fusion(m):
+    if len(m) <= 1:
+        return m
+    mid = len(m) // 2
+    left = m[:mid]
+    right = m[mid:]
+    left = tri_fusion(left)
+    right = tri_fusion(right)
+    return list(fusion(left, right))
+
 k=[1,2,3,5,1,2,8,53,84,12,35,8,7]
-def tempsMoyen(fonction,liste,nbRepetitions=50):
-  start=time.time()
-  for k in range(nbRepetitions):
-    fonction(liste)
-  end=time.time()
-  return (end-start)/nbRepetitions
+def tempsMoyen(fonction,liste,nbRep=50):
+	start=time.time()
+	for i in range(nbRep):
+		shuffle(liste)
+		fonction(liste)
+	end=time.time()
+	return (end-start)/nbRep
 
 def bancEssai():
-  n=1000
-  data1,data2=[],[]
-  for i in range(2,n+1):
-    liste=[randint(1,n) for _ in range(i)]
-    data1.append(tempsMoyen(secondMaximumV1,liste))
-    data2.append(tempsMoyen(secondMaximumV2,liste))
-  afficherCourbe(data1,"V1")
-  afficherCourbe(data2,"V2")
-  legend(loc='upper right')
-  show()
+	n=900
+	data1,data2=[],[]
+	for i in range(2,n+1):
+		liste=[randint(1,n) for _ in range(i)]
+		data1.append(tempsMoyen(tri_selection,liste))
+		data2.append(tempsMoyen(tri_fusion,liste))
+	afficherCourbe(data1,"tri selection")
+	afficherCourbe(data2, "tri fusion")
+	legend(loc='upper right')
+	show()
 
 bancEssai()
-'''tribulle(k)
-print(k)'''
-
+#print(tri_selection(k))
