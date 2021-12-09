@@ -147,34 +147,39 @@ def double(p):
 			empiler(p,e)	
 		return res
 
-def triseq(l,n):
-	if n>1:
-		triseq(l,n-1)
-		k=n-1
-		while k>0 and l[k-1]>l[k]:
-			l[k-1],l[k]=l[k],l[k-1]
-			k-=1
-def tridich(l,n):
-	if n>1:
-		tridich(l,n-1)
-		d=0
-		f=n-1
-		while d<f:
-			m=(d+f)//2
-			if l[m]<l[n-1]:
-				d=m+1
+def tri_ins(t):
+	for k in range(1,len(t)):
+		temp=t[k]
+		j=k
+		while j>0 and temp<t[j-1]:
+			t[j]=t[j-1]
+			j-=1
+		t[j]=temp
+	return t
+
+
+def triinsertion(L):
+	def dichot(L,i,j,X):
+		while i!=j:
+			k=(i+j)//2
+			if X<=L[k]:
+				j=k
 			else:
-				f=m
-		s=l[n-1]
-		for i in range(n-1,d,-1):
-			l[i],l[i-1]=l[i-1],l[i]
-		l[d]=s
+				i=k+1
+		return i
+	for i in range(1,len(L)):
+		if L[i]<L[i-1]:
+			k=dichot(L,0,i-1,L[i])
+			X=L.pop(i)
+			L.insert(k,X)
+	return L
 
 def tribulle(l):
-    for i in range(len(l),0,-1):
-        for j in range(i-1):
-            if l[j+1]<l[j]:
-                l[j+1],l[j]=l[j],l[j+1]
+	for i in range(len(l),0,-1):
+		for j in range(i-1):
+			if l[j+1]<l[j]:
+				l[j+1],l[j]=l[j],l[j+1]
+	return l
 
 def tri_selection(tab):
    for i in range(len(tab)):
@@ -223,15 +228,21 @@ def tempsMoyen(fonction,liste,nbRep=50):
 
 def bancEssai():
 	n=900
-	data1,data2=[],[]
+	data1,data2,data3,data4,data5=[],[],[],[],[]
 	for i in range(2,n+1):
 		liste=[randint(1,n) for _ in range(i)]
-		data1.append(tempsMoyen(tri_selection,liste))
-		data2.append(tempsMoyen(tri_fusion,liste))
-	afficherCourbe(data1,"tri selection")
+		data1.append(tempsMoyen(tri_ins,liste))
+		data2.append(tempsMoyen(triinsertion,liste))
+		data3.append(tempsMoyen(tribulle,liste))
+		data4.append(tempsMoyen(tri_selection,liste))
+		data5.append(tempsMoyen(tri_fusion,liste))
+	afficherCourbe(data1,"tri seq")
+	afficherCourbe(data2, "tri dich")
+	afficherCourbe(data2, "tri bulle")
+	afficherCourbe(data2, "tri selection")
 	afficherCourbe(data2, "tri fusion")
 	legend(loc='upper right')
 	show()
 
 bancEssai()
-#print(tri_selection(k))
+#print(triinsertion(k))
