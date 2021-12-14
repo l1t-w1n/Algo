@@ -217,7 +217,7 @@ def tri_fusion(m):
     right = tri_fusion(right)
     return list(fusion(left, right))
 
-k=[1,2,3,5,1,2,8,53,84,12,35,8,7]
+k=[1,2,3,5,1,2,8,0,84,12,35,8,0]
 def tempsMoyen(fonction,liste,nbRep=50):
 	start=time.time()
 	for i in range(nbRep):
@@ -244,5 +244,71 @@ def bancEssai():
 	legend(loc='upper right')
 	show()
 
-bancEssai()
-#print(triinsertion(k))
+def aff_pol(t):
+	res=''
+	for i in range(len(t)):
+		if i==0:
+			res+=f'{t[i]}'
+		elif i==1:
+			res+=f'+{t[i]}x'
+		elif t[i]==1:
+			res+=f"+x^{i}"
+		elif i==1 and t[i]==1:
+			res+="+x"
+		else:
+			res+=f"+{t[i]}x^{i}"
+	return res
+
+def degre(t):
+	res=len(t)
+	t.reverse()
+	for i in range(len(t)):
+		if t[i]==0:
+			res-=1
+		else:
+			break
+	return res
+
+def val_poly(t,n):
+	res=0
+	for i in range(len(t)):
+		res+=t[i]*n**i
+	return res
+
+def sompoly(t1,t2):
+	if len(t1)>len(t2):
+		res=t1
+		for i in range(len(t2)):
+			res[i]=t1[i]+t2[i]
+	else:
+		res=t2
+		for i in range(len(t1)):
+			res[i]=t1[i]+t2[i]
+	if res[-1]==0:
+		res.pop()
+		for i in range(len(res)-1,-1,-1):
+			if res[i]==0:
+				res.pop()
+			else:
+				break
+	return res
+
+def derivpoly(t):
+	res=[]
+	for i in range(1,len(t)):
+		res.append(i*t[i])
+	return res
+
+def produitpolu(s1,s2):
+	res = [0]*(len(s1)+len(s2)-1)
+	for o1,i1 in enumerate(s1):
+		for o2,i2 in enumerate(s2):
+			res[o1+o2] += i1*i2
+	return res
+
+poly1=[3,0,2,0,1,0]
+poly2= [0,1,2,3,-1]
+print(derivpoly(poly1))
+
+
+		
