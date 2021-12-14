@@ -2,6 +2,7 @@ import itertools as it
 from pylab import *
 from random import *
 from collections import deque
+import time
 c=0
 def naif2(t):
 	max=t[0]
@@ -218,6 +219,7 @@ def tri_fusion(m):
     return list(fusion(left, right))
 
 k=[1,2,3,5,1,2,8,0,84,12,35,8,0]
+
 def tempsMoyen(fonction,liste,nbRep=50):
 	start=time.time()
 	for i in range(nbRep):
@@ -238,9 +240,9 @@ def bancEssai():
 		data5.append(tempsMoyen(tri_fusion,liste))
 	afficherCourbe(data1,"tri seq")
 	afficherCourbe(data2, "tri dich")
-	afficherCourbe(data2, "tri bulle")
-	afficherCourbe(data2, "tri selection")
-	afficherCourbe(data2, "tri fusion")
+	afficherCourbe(data3, "tri bulle")
+	afficherCourbe(data4, "tri selection")
+	afficherCourbe(data5, "tri fusion")
 	legend(loc='upper right')
 	show()
 
@@ -308,7 +310,7 @@ def produitpolu(s1,s2):
 
 poly1=[3,0,2,0,1,0]
 poly2= [0,1,2,3,-1]
-print(derivpoly(poly1))
+bancEssai()
 
 
 		
